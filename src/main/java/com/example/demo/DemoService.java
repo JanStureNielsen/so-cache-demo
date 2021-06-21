@@ -1,21 +1,19 @@
 package com.example.demo;
 
-import java.util.concurrent.TimeUnit;
-
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-@Service
+import lombok.RequiredArgsConstructor;
+
+@Service @RequiredArgsConstructor
 public class DemoService {
-	@Cacheable(cacheNames={"hello"})
-	public String hello(String who) {
-		return "Hello, " + who;
+	private final DemoEntityRepository repository;
+
+	public DemoEntity save(DemoEntity demoEntity) {
+		return repository.save(demoEntity);
 	}
 
-	@Cacheable(cacheNames={"hellooo"})
-	public String hellooo(String who) throws InterruptedException {
-		TimeUnit.SECONDS.sleep(1);
-		return "Hello, " + who;
+	public DemoEntity getById(Long id) {
+		return repository.getById(id);
 	}
 
 }

@@ -8,24 +8,12 @@ import lombok.RequiredArgsConstructor;
 public class DemoHandler {
 	private final DemoService service;
 
-	public String hello(String who) {
-		long start = System.nanoTime();
-		String response = service.hello(who);
-		long end = System.nanoTime();
-
-		System.out.println("hello.....: " + (end-start) + " nanos");
-
-		return response;
+	public DemoEntity save(DemoEntity demoEntity) {
+		return service.save(demoEntity);
 	}
 
-	public String hellooo(String who) throws InterruptedException {
-		long start = System.nanoTime();
-		String response = service.hellooo(who);
-		long end = System.nanoTime();
-
-		System.out.println("hellooo...: " + (end-start) + " nanos");
-
-		return response;
+	public DemoEntity getById(Long id) {
+		return service.getById(id);
 	}
 
 }
